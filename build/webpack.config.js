@@ -2,7 +2,6 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ChromeExtensionHmrWebpackPlugin = require('../../chrome-extension-hmr-webpack-plugin')
 
-// console.log(ChromeExtensionHmrWebpackPlugin)
 module.exports = {
   mode: 'development',
   watch: true,
@@ -13,6 +12,15 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, '../dist'),
     filename: '[name].js'
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader'
+      }
+    ]
   },
   plugins: [
     new HtmlWebpackPlugin({
